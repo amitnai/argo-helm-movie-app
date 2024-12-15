@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: client
+  namespace: {{ .Values.namespace }}
+  labels:
+    app: client
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: client
+  template:
+    metadata:
+      labels:
+        app: client
+    spec:
+      containers:
+      - name: client
+        image: {{ .Values.client.image }}
+        ports:
+        - containerPort: {{ .Values.client.port }}
+        env:
+        {{- range .Values.client.env }}
+        - name: {{ .name }}
+          value: {{ .value | quote }}
+        {{- end }}
+

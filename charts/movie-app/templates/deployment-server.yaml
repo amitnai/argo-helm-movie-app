@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: server
+  namespace: {{ .Values.namespace }}
+  labels:
+    app: server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: server
+  template:
+    metadata:
+      labels:
+        app: server
+    spec:
+      containers:
+      - name: server
+        image: {{ .Values.server.image }}
+        ports:
+        - containerPort: {{ .Values.server.port }}
+        env:
+        - name: CLIENT_SERVICE
+          value: "http://74.179.210.22:3000"
+        - name: MONGO_URI
+          value: "mongodb://mongo:27017/cinema"
+        - name: CLIENT_URL
+          value: "http://74.179.210.22:3000"
+
+

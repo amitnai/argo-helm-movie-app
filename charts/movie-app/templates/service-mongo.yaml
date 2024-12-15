@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: mongo
+  namespace: {{ .Values.namespace }}
+spec:
+  type: {{ .Values.mongo.serviceType }}  # ClusterIP
+  ports:
+  - port: 27017                         # Exposed port internally
+    targetPort: {{ .Values.mongo.port }} # Container port (27017)
+  selector:
+    app: mongo
+
