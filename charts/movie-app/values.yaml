@@ -6,9 +6,9 @@ client:
   serviceType: LoadBalancer
   env:
     - name: SERVER_SERVICE
-      value: "http://4.157.9.5:5000"
+      value: "http://server.argo-helm-movie-app.svc.cluster.local:5000"
     - name: REACT_APP_API_URL
-      value: "http://4.157.9.5:5000/api"
+      value: "http://server.argo-helm-movie-app.svc.cluster.local:5000/api"
 
 server:
   image: amitnai/server:latest
@@ -16,11 +16,11 @@ server:
   serviceType: LoadBalancer
   env:
     - name: CLIENT_SERVICE
-      value: "http://74.179.210.22:3000"
+      value: "http://client.argo-helm-movie-app.svc.cluster.local:3000"
     - name: MONGO_URI
       value: "mongodb://mongo:27017/cinema"
     - name: CLIENT_URL
-      value: "http://74.179.210.22:3000"
+      value: "http://client.argo-helm-movie-app.svc.cluster.local:3000"
 
 mongo:
   image: amitnai/mongo:latest
