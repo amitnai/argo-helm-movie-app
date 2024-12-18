@@ -1,4 +1,4 @@
-namespace: helm-movie-app
+namespace: argo-helm-movie-app
 
 client:
   image: amitnai/client:latest
