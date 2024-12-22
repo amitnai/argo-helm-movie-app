@@ -21,8 +21,14 @@ spec:
         ports:
         - containerPort: {{ .Values.client.port }}
         env:
-        {{- range .Values.client.env }}
-        - name: {{ .name }}
-          value: {{ .value | quote }}
-        {{- end }}
+        - name: REACT_APP_API_URL
+          valueFrom:
+            secretKeyRef:
+              name: app-env-vars
+              key: REACT_APP_API_URL
+        - name: SERVER_SERVICE
+          valueFrom:
+            secretKeyRef:
+              name: app-env-vars
+              key: SERVER_SERVICE
 

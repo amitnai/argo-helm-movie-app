@@ -22,10 +22,18 @@ spec:
         - containerPort: {{ .Values.server.port }}
         env:
         - name: CLIENT_SERVICE
-          value: "http://client.argo-helm-movie-app.svc.cluster.local:3000"
+          valueFrom:
+            secretKeyRef:
+              name: app-env-vars
+              key: CLIENT_SERVICE
         - name: MONGO_URI
-          value: "mongodb://mongo:27017/cinema"
+          valueFrom:
+            secretKeyRef:
+              name: app-env-vars
+              key: MONGO_URI
         - name: CLIENT_URL
-          value: "http://client.argo-helm-movie-app.svc.cluster.local:3000"
-
+          valueFrom:
+            secretKeyRef:
+              name: app-env-vars
+              key: CLIENT_URL
 
