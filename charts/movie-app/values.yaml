@@ -4,6 +4,14 @@ client:
   image: amitnai/client:latest
   port: 3000
   serviceType: LoadBalancer
+  replicas: 2  # Initial replicas for client
+  resources:
+    requests:
+      cpu: 100m
+      memory: 128Mi
+    limits:
+      cpu: 500m
+      memory: 256Mi
   env:
     SERVER_SERVICE: "http://135.237.75.185:5000"
     REACT_APP_API_URL: "http://135.237.75.185:5000/api"
@@ -12,6 +20,14 @@ server:
   image: amitnai/server:latest
   port: 5000
   serviceType: LoadBalancer
+  replicas: 2  # Initial replicas for server
+  resources:
+    requests:
+      cpu: 200m
+      memory: 256Mi
+    limits:
+      cpu: 1
+      memory: 512Mi
   env:
     CLIENT_SERVICE: "http://57.152.52.91:3000"
     MONGO_URI: "mongodb://mongo:27017/cinema"
@@ -21,4 +37,17 @@ mongo:
   image: amitnai/mongo:latest
   port: 27017
   serviceType: ClusterIP
+  resources:  # Optional but recommended
+    requests:
+      cpu: 100m
+      memory: 128Mi
+    limits:
+      cpu: 500m
+      memory: 256Mi
+
+autoscaling:
+  enabled: true
+  minReplicas: 2
+  maxReplicas: 10
+  cpuThreshold: 70
 

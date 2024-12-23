@@ -3,10 +3,8 @@ kind: Deployment
 metadata:
   name: server
   namespace: {{ .Values.namespace }}
-  labels:
-    app: server
 spec:
-  replicas: 1
+  replicas: {{ .Values.server.replicas }}
   selector:
     matchLabels:
       app: server
@@ -20,6 +18,8 @@ spec:
         image: {{ .Values.server.image }}
         ports:
         - containerPort: {{ .Values.server.port }}
+        resources:
+          {{- toYaml .Values.server.resources | nindent 10 }}
         env:
         - name: CLIENT_SERVICE
           valueFrom:

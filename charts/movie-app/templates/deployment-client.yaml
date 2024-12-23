@@ -3,10 +3,8 @@ kind: Deployment
 metadata:
   name: client
   namespace: {{ .Values.namespace }}
-  labels:
-    app: client
 spec:
-  replicas: 1
+  replicas: {{ .Values.client.replicas }}
   selector:
     matchLabels:
       app: client
@@ -20,6 +18,8 @@ spec:
         image: {{ .Values.client.image }}
         ports:
         - containerPort: {{ .Values.client.port }}
+        resources:
+          {{- toYaml .Values.client.resources | nindent 10 }}
         env:
         - name: REACT_APP_API_URL
           valueFrom:
