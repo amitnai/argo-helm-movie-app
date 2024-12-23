@@ -7,11 +7,11 @@ client:
   replicas: 2  # Initial replicas for client
   resources:
     requests:
-      cpu: 100m
-      memory: 128Mi
+      cpu: 200m
+      memory: 256i
     limits:
-      cpu: 500m
-      memory: 256Mi
+      cpu: 1
+      memory: 512Mi
   env:
     SERVER_SERVICE: "http://135.237.75.185:5000"
     REACT_APP_API_URL: "http://135.237.75.185:5000/api"
