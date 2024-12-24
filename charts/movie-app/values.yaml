@@ -37,6 +37,9 @@ mongo:
   image: amitnai/mongo:latest
   port: 27017
   serviceType: ClusterIP
+  pvc:
+    enabled: true
+    name: mongo-pvc
   resources:  # Optional but recommended
     requests:
       cpu: 100m

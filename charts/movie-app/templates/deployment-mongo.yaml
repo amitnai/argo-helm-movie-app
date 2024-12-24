@@ -20,4 +20,11 @@ spec:
         image: {{ .Values.mongo.image }}
         ports:
         - containerPort: {{ .Values.mongo.port }}  # 27017
+        volumeMounts:
+        - name: mongo-storage
+          mountPath: /data/db 
+      volumes:
+      - name: mongo-storage
+        persistentVolumeClaim:
+          claimName: mongo-pvc
 
