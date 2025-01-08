@@ -1,14 +1,13 @@
-
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: mongo-pvc
-  namespace: argo-helm-movie-app
+  name: mongo-pvc2
+  namespace: {{ .Values.namespace }}
 spec:
   accessModes:
     - ReadWriteOnce
   resources:
     requests:
-      storage: 10Gi  # This should match the PV size
-
+      storage: {{ .Values.mongo.persistence.size }}
+  storageClassName: {{ .Values.mongo.persistence.storageClassName }}
 

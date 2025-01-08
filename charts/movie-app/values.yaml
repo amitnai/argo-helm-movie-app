@@ -37,16 +37,10 @@ mongo:
   image: amitnai/mongo:latest
   port: 27017
   serviceType: ClusterIP
-  pvc:
+  persistence:
     enabled: true
-    name: mongo-pvc
-  resources:  # Optional but recommended
-    requests:
-      cpu: 100m
-      memory: 128Mi
-    limits:
-      cpu: 500m
-      memory: 256Mi
+    size: 5Gi          # Storage size
+    storageClassName: vault-storage-class
 
 autoscaling:
   enabled: true
