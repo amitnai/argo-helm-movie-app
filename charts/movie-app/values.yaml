@@ -34,7 +34,6 @@ server:
     CLIENT_URL: "http://57.152.52.91:3000"
 
 mongo:
-  mongodb:
   replicaCount: 1
   image:
     repository: mongo
