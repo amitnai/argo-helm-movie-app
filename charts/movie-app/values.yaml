@@ -43,6 +43,8 @@ mongo:
     enabled: true
     size: 5Gi
     storageClassName: vault-storage-class
+  statefulset:
+    enabled: true
 
 autoscaling:
   enabled: true
