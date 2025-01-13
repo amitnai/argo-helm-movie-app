@@ -30,4 +30,4 @@ spec:
         resources:
           requests:
             storage: {{ .Values.mongo.persistence.size }}
-
+        storageClassName: {{ .Values.mongodb.persistence.storageClassName }}

@@ -42,6 +42,7 @@ mongo:
   persistence:
     enabled: true
     size: 5Gi
+    storageClassName: vault-storage-class
 
 autoscaling:
   enabled: true
