@@ -1,24 +1,24 @@
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: mongodb
+  name: mongo
   namespace: argo-helm-movie-app
 spec:
-  serviceName: "mongodb"
-  replicas: {{ .Values.mongodb.replicaCount }}
+  serviceName: "mongo"
+  replicas: {{ .Values.mongo.replicaCount }}
   selector:
     matchLabels:
-      app: mongodb
+      app: mongo
   template:
     metadata:
       labels:
-        app: mongodb
+        app: mongo
     spec:
       containers:
-        - name: mongodb
-          image: "{{ .Values.mongodb.image.repository }}:{{ .Values.mongodb.image.tag }}"
+        - name: mongo
+          image: "{{ .Values.mongo.image.repository }}:{{ .Values.mongo.image.tag }}"
           ports:
-            - containerPort: {{ .Values.mongodb.port }}
+            - containerPort: {{ .Values.mongo.port }}
           volumeMounts:
             - name: mongodb-data
               mountPath: /data/db
@@ -29,5 +29,5 @@ spec:
         accessModes: ["ReadWriteOnce"]
         resources:
           requests:
-            storage: {{ .Values.mongodb.persistence.size }}
+            storage: {{ .Values.mongo.persistence.size }}
 
