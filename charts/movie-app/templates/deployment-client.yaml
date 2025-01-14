@@ -29,6 +29,5 @@ spec:
         - name: SERVER_SERVICE
           valueFrom:
             secretKeyRef:
-              name: app-env-vars
+              name: {{ .Values.client.env.serverServiceSecretName }}
               key: SERVER_SERVICE
-

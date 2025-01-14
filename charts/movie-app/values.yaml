@@ -13,7 +13,7 @@ client:
       cpu: "1"
       memory: "512Mi"
   env:
-    SERVER_SERVICE: "http://135.237.75.185:5000"
+    serverServiceSecretName: "server"
     REACT_APP_API_URL: "http://135.237.75.185:5000/api"
 
 server:
